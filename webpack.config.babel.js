@@ -30,7 +30,8 @@ export default {
             {
                 test: /\.tag$/,
                 loader: 'riotjs',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                query: { type: 'babel' }
             },
             {
                 test: /\.html$/,
