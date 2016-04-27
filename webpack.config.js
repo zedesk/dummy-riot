@@ -1,28 +1,48 @@
 'use strict';
 
-const path = require('path');
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-module.exports = {
+let extractHTML = new ExtractTextPlugin('index.html');
+
+export default {
     entry: './src/index.js',
     output: {
-        path: __dirname,
+        path: './dist',
         filename: 'bundle.js'
     },
+    plugins: [
+        new webpack.ProvidePlugin({
+            riot: 'riot'
+        }),
+        extractHTML
+    ],
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                loader: 'babel',
                 exclude: /node_modules/,
                 query: {
-                    presets: [ 'es2015' ]
+                    presets: [ 'es2015-riot' ]
                 }
             },
             {
                 test: /\.tag$/,
-                loader: 'tag',
+                loader: 'riotjs',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.html$/,
+                exclude: /node_modules/,
+                loader: extractHTML.extract('html')
             }
         ]
+    },
+    resolve: {
+        extensions: ['', '.js', '.tag']
+    },
+    devServer: {
+        contentBase: 'dist'
     }
 }
