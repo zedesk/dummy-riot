@@ -20,7 +20,7 @@
 		return (new Array(Math.ceil((length - value.length) / str.length) + 1).join(str)).substr(0, (length - value.length)) + value;
     }
 
-    tick() {
+    this.tick = () => {
         const date = new Date();
         this.seconds = leftPad(date.getSeconds()+'',2,'0');
         this.minutes = leftPad(date.getMinutes()+'',2,'0');

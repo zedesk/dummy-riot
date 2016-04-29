@@ -22,10 +22,7 @@ export default {
             {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: [ 'es2015-riot' ]
-                }
+                exclude: /node_modules/
             },
             {
                 test: /\.tag$/,
@@ -44,6 +41,9 @@ export default {
         extensions: ['', '.js', '.tag']
     },
     devServer: {
-        contentBase: 'dist'
+        contentBase: 'dist',
+        port: 1337,
+        hot: true,
+        inline: true
     }
 }

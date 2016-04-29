@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+    web:
+        image: ducknode:5.11.0-dev
+        volumes:
+            - $PWD:/home/src
+        ports:
+            - 8080:1337
+        command: /home/src/start.sh

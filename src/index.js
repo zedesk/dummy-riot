@@ -1,8 +1,6 @@
 'use strict';
 
-const riot = require('riot');
-require('./tags/my-timer.tag');
+import './index.html'
+import './tags/my-timer'
 
-document.addEventListener('DOMContentLoaded', () => {
-    riot.mount('my-timer');
-})
+riot.mount('my-timer');
